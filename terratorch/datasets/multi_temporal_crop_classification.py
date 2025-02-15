@@ -156,7 +156,7 @@ class MultiTemporalCropClassification(NonGeoDataset):
         temporal_coords = []
         for col in self.date_columns:
             date_str = row[col]
-            date = pd.to_datetime(date_str)
+            date = pd.to_datetime(date_str, format="%Y-%m-%dT%H:%M:%S.%fZ")
             temporal_coords.append([date.year, date.dayofyear - 1])
 
         return torch.tensor(temporal_coords, dtype=torch.float32)
